@@ -1,8 +1,7 @@
 import axios from "axios";
-import { Alert } from "react-native";
 
 const instance = axios.create({
-  baseURL: "http://192.168.1.7:3000",
+  baseURL: "https://heallthy-be.vercel.app", //http://192.168.1.7:3000",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
@@ -14,6 +13,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     // config.headers.Authorization = `Bearer ${token}`;
+    console.log(config.params);
     return config;
   },
   (error) => {
@@ -29,11 +29,11 @@ instance.interceptors.response.use(
   (error) => {
     if (error.response) {
       const message = error.response.data?.message || "An error occurred";
-      Alert.alert("Error", message);
+      console.warn("Error", message);
     } else if (error.request) {
-      Alert.alert("Error", "Network error. Please try again.");
+      console.warn("Error", "Network error. Please try again.");
     } else {
-      Alert.alert("Error", error.message);
+      console.warn("Error", error.message);
     }
 
     return Promise.reject(error);
