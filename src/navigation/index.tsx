@@ -2,7 +2,9 @@ import { BottomTabNavigationProp, BottomTabScreenProps, createBottomTabNavigator
 
 import { TabBarItem } from "./components/tabItem";
 
+import { COLOR } from "@/enum/color";
 import HomeScreen from "@/screen/home";
+import SettingScreen from "@/screen/setting";
 
 export type RootBottomTabParamList = {
   home: undefined;
@@ -21,11 +23,36 @@ const Navigation = () => {
   return (
     <Tab.Navigator
       tabBar={(props) => <TabBarItem {...props} />}
-      sceneContainerStyle={{ backgroundColor: "red" }}
-      screenOptions={({ route }) => ({})}
+      sceneContainerStyle={{ backgroundColor: COLOR.backgroundDark }}
     >
-      <Tab.Screen name="home" component={HomeScreen} />
-      <Tab.Screen name="settings" component={HomeScreen} />
+      <Tab.Screen
+        name="home"
+        component={HomeScreen}
+        options={{
+          title: "Home",
+          headerStyle: {
+            backgroundColor: COLOR.orange,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Tab.Screen
+        name="settings"
+        component={SettingScreen}
+        options={{
+          title: "Settings",
+          headerStyle: {
+            backgroundColor: COLOR.orange,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };

@@ -20,4 +20,5 @@ type AuthDataType = {
   success: boolean;
   user: User;
 };
+
 export type AuthResponseType = APIResponseType<AuthDataType>;

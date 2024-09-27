@@ -11,7 +11,8 @@ export const containerTabBar = StyleSheet.create({
     flexDirection: "row",
     borderTopWidth: 1,
     display: "flex",
-    borderColor: COLOR.orange,
+    borderColor: COLOR.subText,
+    backgroundColor: COLOR.backgroundDark,
   },
 });
 
@@ -36,10 +37,10 @@ export const containerTabBarItem = StyleSheet.create({
     height: 80,
     elevation: 0,
     paddingTop: 12,
-    borderColor: COLOR.primary,
+    borderColor: COLOR.subText,
   },
   active: {
-    borderColor: COLOR.orange,
+    borderColor: COLOR.primary,
   },
 });
 
@@ -49,9 +50,9 @@ export const headerTitleStyle = StyleSheet.create({
     lineHeight: 26,
     marginTop: 2,
     fontSize: 16,
-    color: COLOR.primary,
+    color: COLOR.subText,
   },
   active: {
-    color: COLOR.orange,
+    color: COLOR.primary,
   },
 });

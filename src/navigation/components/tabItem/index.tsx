@@ -11,15 +11,14 @@ import {
 } from "./tabitem.style";
 import { IconListType } from "./tabitem.type";
 
-import SvgHome from "@/assets/svg/Home.svg";
-import SvgSetting from "@/assets/svg/Setting.svg";
+import SvgHome from "@/assets/svg/SvgHome";
+import SvgSetting from "@/assets/svg/SvgSetting";
 import { COLOR } from "@/enum/color";
 
 const IconList: IconListType = {
   home: SvgHome,
   settings: SvgSetting,
 };
-
 export const TabBarItem = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const inset = useSafeAreaInsets();
 
@@ -28,7 +27,13 @@ export const TabBarItem = ({ state, descriptors, navigation }: BottomTabBarProps
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label = route.name;
-        const Icon = IconList[label];
+        const Icon = IconList[label as keyof IconListType];
+
+        if (!Icon) {
+          console.error(`No icon found for route: ${label}`);
+          return null; // Early return if the icon is undefined
+        }
+
         let labelTranslation = "";
         const isFocused = state.index === index;
         switch (label) {
@@ -38,6 +43,7 @@ export const TabBarItem = ({ state, descriptors, navigation }: BottomTabBarProps
           default:
             labelTranslation = "Setting";
         }
+
         const onPress = () => {
           const event = navigation.emit({
             type: "tabPress",
@@ -70,7 +76,7 @@ export const TabBarItem = ({ state, descriptors, navigation }: BottomTabBarProps
             style={[wrapperTabBarItem.default, tabBarStyle({ paddingBottom: inset.bottom }).default]}
           >
             <View style={[containerTabBarItem.default, isFocused && containerTabBarItem.active]}>
-              <Icon fill={isFocused ? COLOR.orange : COLOR.primary} width={30} height={30} />
+              <Icon fill={isFocused ? COLOR.primary : COLOR.subText} width={30} height={30} />
               <Text style={[headerTitleStyle.default, isFocused && headerTitleStyle.active]}>{labelTranslation}</Text>
             </View>
           </TouchableOpacity>

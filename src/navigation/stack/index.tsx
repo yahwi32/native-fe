@@ -5,8 +5,9 @@ import {
   StackScreenProps,
 } from "@react-navigation/stack";
 
+import { COLOR } from "@/enum/color";
 import Navigation from "@/navigation";
-import AuthScreen from "@/screen/auth";
+import AuthScreen from "@/screen/home/screens/auth";
 
 export type AppStackParamList = {
   homeStack: undefined;
@@ -38,15 +39,26 @@ const AppStack = () => {
     >
       <Stack.Screen
         name="homeStack"
+        component={Navigation}
         options={{
           headerShown: false,
         }}
-      >
-        {() => {
-          return <Navigation />;
+      />
+      <Stack.Screen
+        name="auth"
+        component={AuthScreen}
+        options={{
+          title: "Login",
+          headerStyle: {
+            backgroundColor: COLOR.orange,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          // headerLeft: () => <></>,
         }}
-      </Stack.Screen>
-      <Stack.Screen name="auth" component={AuthScreen} options={{ headerLeft: () => <></> }} />
+      />
     </Stack.Navigator>
   );
 };
