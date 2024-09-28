@@ -13,22 +13,19 @@ import { useNavigation } from "@react-navigation/native";
 import { AppStackNavigationProps, AppStackScreenProps } from "@/navigation/stack";
 import Toast from "react-native-toast-message";
 import { LoginScreenStyle } from "./login.style";
+import { DEAULT_PARAMS_LOGIN } from "./login.const";
+import { BottomTabNavigationProps } from "@/navigation";
 
 const LoginScreen = ({ route }: AppStackScreenProps<"login">) => {
   // const { params: paramRoute } = route;
   const navigationConfig = useNavigation<AppStackNavigationProps<"login">>();
   const { mutate: mutateLogin, data: dataLogin, isPending: isPendingLogin, error: errorLogin } = useSignIn();
   const { mutate: mutateSignUp, data: dataSignUp, isPending: isPendingSignUp, error: errorSignUp } = useSignUp();
-  const [params, setParams] = useState<SignInParamsType>({
-    email: "",
-    password: "",
-    name: "",
-    confirmPassword: "",
-  });
+  const [params, setParams] = useState<SignInParamsType>(DEAULT_PARAMS_LOGIN);
 
-  const [mode, setMode] = useState<"login" | "signUp">("signUp");
+  const [mode, setMode] = useState<"login" | "signUp">("login");
 
-  const navigation = useNavigation<AppStackNavigationProps>();
+  const navigation = useNavigation<BottomTabNavigationProps>();
 
   const setCurrentUser = useAppStore((state) => state.setCurrentUser);
 
@@ -69,6 +66,7 @@ const LoginScreen = ({ route }: AppStackScreenProps<"login">) => {
 
   const handeChangeMode = () => {
     setMode((pre) => (pre === "login" ? "signUp" : "login"));
+    setParams(DEAULT_PARAMS_LOGIN);
   };
 
   useEffect(() => {
@@ -86,7 +84,7 @@ const LoginScreen = ({ route }: AppStackScreenProps<"login">) => {
         text1: userData === dataLogin ? "Login successful" : "Sign up successful",
         text2: `Welcome ${userData.name}`,
       });
-      navigation.navigate("homeStack");
+      navigation.navigate("home");
     }
   }, [dataLogin, dataSignUp, navigation, setCurrentUser]);
 

@@ -10,6 +10,7 @@ import Toast from "react-native-toast-message";
 
 import { db } from "@/firebase";
 import AppStack from "@/navigation/stack";
+import useAppStore, { useCurrentUser } from "@/store/app";
 
 const queryClient = new QueryClient();
 
@@ -24,8 +25,20 @@ Notifications.setNotificationHandler({
 });
 
 export default function App() {
+  const device = useAppStore((state) => state.device);
+
+  const currentUser = useCurrentUser();
+
   useEffect(() => {
-    const dataFallDownRef = ref(db, "data/fall/66d948021a49420250e10923");
+    if (!currentUser) {
+      return;
+    }
+
+    if (!device) {
+      return;
+    }
+
+    const dataFallDownRef = ref(db, `data/fall/${device ?? "66d948021a49420250e10923"}`);
     const unsubscribeFallDown = onValue(dataFallDownRef, (snapshot) => {
       const status: boolean = snapshot.val()?.status;
       if (status) {
@@ -41,7 +54,7 @@ export default function App() {
     return () => {
       unsubscribeFallDown();
     };
-  }, []);
+  }, [currentUser, device]);
 
   useEffect(() => {
     const requestNotificationPermission = async () => {
