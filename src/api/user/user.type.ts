@@ -13,7 +13,9 @@ export type User = {
 
 export type SignInParamsType = {
   email: string;
+  name: string;
   password: string;
+  confirmPassword?: string;
 };
 
 type AuthDataType = {
