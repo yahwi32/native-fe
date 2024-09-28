@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 import { COLOR } from "@/enum/color";
 
-export const AuthScreenStyle = StyleSheet.create({
+export const LoginScreenStyle = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: COLOR.backgroundDark,
@@ -53,5 +53,13 @@ export const AuthScreenStyle = StyleSheet.create({
     color: COLOR.text,
     textAlign: "center",
     fontSize: 18,
+  },
+  input: {
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: COLOR.text,
+    color: COLOR.text,
   },
 });

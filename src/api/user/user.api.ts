@@ -13,3 +13,13 @@ export const signIn = async (params: SignInParamsType) => {
 
   return data.data.user;
 };
+
+export const signUp = async (params: SignInParamsType) => {
+  const body = {
+    ...params,
+  };
+
+  const data: AuthResponseType = await instance.post("/auth/signup", body);
+
+  return data.data.user;
+};

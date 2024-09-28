@@ -7,11 +7,12 @@ import {
 
 import { COLOR } from "@/enum/color";
 import Navigation from "@/navigation";
-import AuthScreen from "@/screen/home/screens/auth";
+import LoginScreen from "@/screen/home/screens/login";
 
 export type AppStackParamList = {
   homeStack: undefined;
-  auth: undefined;
+  login: undefined;
+  signup: undefined;
 };
 
 export type AppStackNavigationProps<T extends keyof AppStackParamList = keyof AppStackParamList> = StackNavigationProp<
@@ -45,8 +46,8 @@ const AppStack = () => {
         }}
       />
       <Stack.Screen
-        name="auth"
-        component={AuthScreen}
+        name="login"
+        component={LoginScreen}
         options={{
           title: "Login",
           headerStyle: {
@@ -56,7 +57,6 @@ const AppStack = () => {
           headerTitleStyle: {
             fontWeight: "bold",
           },
-          // headerLeft: () => <></>,
         }}
       />
     </Stack.Navigator>
