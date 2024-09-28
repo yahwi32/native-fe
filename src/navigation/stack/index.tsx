@@ -8,11 +8,12 @@ import {
 import { COLOR } from "@/enum/color";
 import Navigation from "@/navigation";
 import LoginScreen from "@/screen/home/screens/login";
+import MeasureScreen from "@/screen/home/screens/measure";
 
 export type AppStackParamList = {
   homeStack: undefined;
   login: undefined;
-  signup: undefined;
+  measure: undefined;
 };
 
 export type AppStackNavigationProps<T extends keyof AppStackParamList = keyof AppStackParamList> = StackNavigationProp<
@@ -50,6 +51,20 @@ const AppStack = () => {
         component={LoginScreen}
         options={{
           title: "Login",
+          headerStyle: {
+            backgroundColor: COLOR.orange,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="measure"
+        component={MeasureScreen}
+        options={{
+          title: "Measure",
           headerStyle: {
             backgroundColor: COLOR.orange,
           },

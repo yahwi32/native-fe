@@ -8,16 +8,30 @@ import { User } from "@/api/user/user.type";
 
 type AppStoreProps = {
   currentUser: User | undefined;
+  device: string | undefined;
   setCurrentUser: (user: User) => void;
+  logout: () => void;
+  setDevice: (id: string) => void;
 };
 
 const useAppStore = createWithEqualityFn<AppStoreProps>()(
   persist(
     (set) => ({
       currentUser: undefined,
+      device: undefined,
       setCurrentUser: (user: User) => {
         set((state) => {
           return { ...state, currentUser: user };
+        });
+      },
+      setDevice: (id: string) => {
+        set((state) => {
+          return { ...state, device: id };
+        });
+      },
+      logout: () => {
+        set((state) => {
+          return { ...state, currentUser: undefined };
         });
       },
     }),
