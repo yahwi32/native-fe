@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://heallthy-be.vercel.app", //http://192.168.1.7:3000",
+  baseURL: "https://health-care-delta.vercel.app" ?? "https://heallthy-be.vercel.app", //http://192.168.1.7:3000",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
@@ -13,7 +13,6 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     // config.headers.Authorization = `Bearer ${token}`;
-    console.log(config.params);
     return config;
   },
   (error) => {

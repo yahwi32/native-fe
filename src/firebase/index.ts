@@ -21,10 +21,8 @@ const getData = (path: string) => {
   onValue(dataRef, (snapshot) => {
     const data = snapshot.val();
     res = JSON.stringify(data);
-    console.log("Real-time data: ", data);
   });
 
-  console.log("res", res);
   return res;
 };
 

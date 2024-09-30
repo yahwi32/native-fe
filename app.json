@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "healthyCare",
-    "slug": "healthyCare",
+    "slug": "healthy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,10 +19,26 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "useNextNotificationsApi": true
+      "useNextNotificationsApi": true,
+      "package": "com.tranhuuvinh.healthy"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "026b9eeb-2e30-4ec8-afec-5c89f5c418a8"
+      }
+    },
+    "expo": {
+      "plugins": [
+        [
+          "expo-barcode-scanner",
+          {
+            "cameraPermission": "Allow $(PRODUCT_NAME) to access camera."
+          }
+        ]
+      ]
     }
   }
 }
