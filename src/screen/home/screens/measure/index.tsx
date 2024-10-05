@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { MeasureStyle } from "./measure.style";
 
+import { useRequestMeasure } from "@/api/noti";
 import SvgHeart from "@/assets/svg/SvgHeart";
 import { COLOR } from "@/enum/color";
 import { db } from "@/firebase";
@@ -16,6 +17,7 @@ import { convertTimestamp } from "@/ultil";
 
 const MeasureScreen = () => {
   const inset = useSafeAreaInsets();
+  const { mutate, data, isPending } = useRequestMeasure();
   const navigation = useNavigation<AppStackNavigationProps>();
   const currentUser = useCurrentUser();
   const [heartRate, setHeartRate] = useState("");
@@ -30,6 +32,10 @@ const MeasureScreen = () => {
 
   const handlePress = () => {
     navigation.navigate("homeStack");
+  };
+
+  const handlePressMeasureNow = () => {
+    mutate();
   };
 
   useEffect(() => {
@@ -54,11 +60,11 @@ const MeasureScreen = () => {
       <ScrollView style={{ flex: 1 }}>
         <View style={MeasureStyle.title}>
           <Text style={MeasureStyle.text}>
-            {heartRate.toString() === "0" ? "Measuring heart rate ..." : "Measured heart rate:"}
+            {heartRate.toString() === "-" ? "Measuring heart rate ..." : "Measured heart rate:"}
           </Text>
           <Text style={[MeasureStyle.text, MeasureStyle.textPrimary]}>
             {" "}
-            {heartRate.toString() === "0" ? " - " : heartRate} bpm
+            {heartRate.toString() === "-" ? " - " : heartRate} bpm
           </Text>
         </View>
         <View style={{ marginTop: 100 }}>
@@ -85,8 +91,15 @@ const MeasureScreen = () => {
         style={{
           paddingVertical: inset.bottom + 48,
           paddingHorizontal: 24,
+          gap: 16,
         }}
       >
+        <TouchableOpacity
+          onPress={handlePressMeasureNow}
+          style={{ backgroundColor: COLOR.heart, paddingHorizontal: 16, paddingVertical: 16, borderRadius: 50 }}
+        >
+          <Text style={{ textAlign: "center", color: "white", fontWeight: 600 }}>Measure now</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={handlePress}
           style={{ backgroundColor: COLOR.primary, paddingHorizontal: 16, paddingVertical: 16, borderRadius: 50 }}

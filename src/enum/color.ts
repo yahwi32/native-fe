@@ -8,6 +8,8 @@ export enum COLOR {
   heart = "#F7305A",
   backgroundDark = "#212529",
   backgroundDarkOverlay = "rgba(33, 37, 41, 0.8)",
+  backgroundOverlay = "rgba(0, 0, 0, 0.8)",
   subText = "#7D8187",
   text = "#F4F4F4",
+  red = "#fe2338",
 }
