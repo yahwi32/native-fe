@@ -10,4 +10,9 @@ export type FallDownType = {
   __v: number;
 };
 
+export type MeasureType = {
+  status: boolean;
+};
+
 export type FallDownResponseType = APIResponseType<FallDownType[]>;
+export type MeasureResponseType = APIResponseType<MeasureType>;

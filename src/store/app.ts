@@ -11,6 +11,7 @@ type AppStoreProps = {
   device: string | undefined;
   setCurrentUser: (user: User) => void;
   logout: () => void;
+  clearDevice: () => void;
   setDevice: (id: string) => void;
 };
 
@@ -32,6 +33,11 @@ const useAppStore = createWithEqualityFn<AppStoreProps>()(
       logout: () => {
         set((state) => {
           return { ...state, currentUser: undefined };
+        });
+      },
+      clearDevice: () => {
+        set((state) => {
+          return { ...state, device: undefined };
         });
       },
     }),

@@ -11,6 +11,7 @@ import Toast from "react-native-toast-message";
 import { db } from "@/firebase";
 import AppStack from "@/navigation/stack";
 import useAppStore, { useCurrentUser } from "@/store/app";
+import { THRESHOLD_NOTI } from "@/ultil/config";
 
 const queryClient = new QueryClient();
 
@@ -41,7 +42,9 @@ export default function App() {
     const dataFallDownRef = ref(db, `data/fall/${device ?? "66d948021a49420250e10923"}`);
     const unsubscribeFallDown = onValue(dataFallDownRef, (snapshot) => {
       const status: boolean = snapshot.val()?.status;
-      if (status) {
+      const updated_at: number = Number(snapshot.val()?.updated_at ?? 0);
+
+      if (status && new Date().getTime() - updated_at < THRESHOLD_NOTI) {
         Notifications.scheduleNotificationAsync({
           content: {
             title: "Warning",

@@ -36,14 +36,19 @@ export const SettingStyle = StyleSheet.create({
     backgroundColor: COLOR.subText,
     marginVertical: 40,
   },
-  input: {
+  device: {
     marginTop: 12,
-    paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: COLOR.text,
     color: COLOR.text,
+  },
+  delete: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  btnDelete: {
+    padding: 12,
+    borderRadius: 100,
   },
   inputDisable: {
     color: COLOR.subText,

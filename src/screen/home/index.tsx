@@ -2,8 +2,12 @@ import { useNavigation } from "@react-navigation/native";
 import { onValue, ref } from "firebase/database";
 import { useCallback, useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import Toast from "react-native-toast-message";
+
+import SettingScreen from "../setting";
 
 import { HomeStyle } from "./home.style";
+import LoginScreen from "./screens/login";
 
 import SvgBell from "@/assets/svg/SvgBell";
 import SvgHeart from "@/assets/svg/SvgHeart";
@@ -29,13 +33,6 @@ const HomeScreen = () => {
     setIsLastestNoti(false);
     navigation.navigate("noti");
   }, [navigation]);
-
-  const isLoadingUser = currentUser === undefined;
-  useEffect(() => {
-    if (!isLoadingUser && !currentUser) {
-      navigation.navigate("login");
-    }
-  }, [currentUser, isLoadingUser, navigation]);
 
   useEffect(() => {
     if (!currentUser) {
@@ -83,8 +80,22 @@ const HomeScreen = () => {
           )}
         </View>
       ),
+      headerTitle: currentUser ? "Home" : "Login",
     });
-  }, [handlePressNoti, isLastestNoti, navigationConfig]);
+  }, [currentUser, handlePressNoti, isLastestNoti, navigationConfig]);
+
+  if (!currentUser) {
+    return <LoginScreen />;
+  }
+
+  if (!device) {
+    Toast.show({
+      type: "error",
+      text1: "Don't have device",
+      text2: `Please enter device to use application`,
+    });
+    return <SettingScreen />;
+  }
 
   return (
     <View style={HomeStyle.wrapper}>

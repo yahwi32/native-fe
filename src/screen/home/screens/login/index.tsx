@@ -10,13 +10,13 @@ import { COLOR } from "@/enum/color";
 import LoadingModal from "@/components/loading";
 import useAppStore from "@/store/app";
 import { useNavigation } from "@react-navigation/native";
-import { AppStackNavigationProps, AppStackScreenProps } from "@/navigation/stack";
+import { AppStackNavigationProps } from "@/navigation/stack";
 import Toast from "react-native-toast-message";
 import { LoginScreenStyle } from "./login.style";
 import { DEAULT_PARAMS_LOGIN } from "./login.const";
 import { BottomTabNavigationProps } from "@/navigation";
 
-const LoginScreen = ({ route }: AppStackScreenProps<"login">) => {
+const LoginScreen = () => {
   // const { params: paramRoute } = route;
   const navigationConfig = useNavigation<AppStackNavigationProps<"login">>();
   const { mutate: mutateLogin, data: dataLogin, isPending: isPendingLogin, error: errorLogin } = useSignIn();
