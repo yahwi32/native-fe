@@ -100,12 +100,12 @@ const HomeScreen = () => {
   return (
     <View style={HomeStyle.wrapper}>
       <ScrollView style={{ flex: 1 }}>
-        <View style={HomeStyle.containerBtn}>
+        {/* <View style={HomeStyle.containerBtn}>
           <TouchableOpacity onPress={handlePress} style={HomeStyle.btn}>
             <SvgHeart fill={COLOR.orange} width={24} />
             <Text style={HomeStyle.text}>Measure your heart now</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
         <Chart />
         <Chart />
       </ScrollView>

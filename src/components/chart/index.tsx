@@ -6,7 +6,7 @@ const Chart = () => {
   return (
     <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
       <Text style={{ fontSize: 16, color: COLOR.text, fontWeight: 700 }}>
-        Average beat statistics for the past 7 days
+        Statistics of falls detected in the last 7 days
       </Text>
       <LineChart
         data={{
@@ -43,6 +43,7 @@ const Chart = () => {
           marginVertical: 8,
           borderRadius: 16,
         }}
+        onDataPointClick={(data) => console.log(data)}
       />
     </View>
   );

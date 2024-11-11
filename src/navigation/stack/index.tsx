@@ -7,6 +7,7 @@ import {
 
 import { COLOR } from "@/enum/color";
 import Navigation from "@/navigation";
+import DetailsScreen, { DetailsScreenProps } from "@/screen/home/screens/details";
 import LoginScreen from "@/screen/home/screens/login";
 import MeasureScreen from "@/screen/home/screens/measure";
 import NotificationScreen from "@/screen/home/screens/noti";
@@ -16,6 +17,7 @@ export type AppStackParamList = {
   login: undefined;
   measure: undefined;
   noti: undefined;
+  detail: DetailsScreenProps;
 };
 
 export type AppStackNavigationProps<T extends keyof AppStackParamList = keyof AppStackParamList> = StackNavigationProp<
@@ -81,6 +83,20 @@ const AppStack = () => {
         component={NotificationScreen}
         options={{
           title: "Notifications",
+          headerStyle: {
+            backgroundColor: COLOR.orange,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="detail"
+        component={DetailsScreen}
+        options={{
+          title: "Detail",
           headerStyle: {
             backgroundColor: COLOR.orange,
           },
