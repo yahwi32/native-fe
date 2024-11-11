@@ -16,7 +16,15 @@ const NotificationScreen = () => {
         {data ? (
           <View style={{ gap: 16 }}>
             {data?.reverse()?.map((item, index) => {
-              return <NotiItem key={index} time={item.createdAt} title="Looks like you just fell" />;
+              return (
+                <NotiItem
+                  key={index}
+                  data={item}
+                  time={item.createdAt}
+                  image={item.image}
+                  title="Looks like you just fell"
+                />
+              );
             })}
           </View>
         ) : (

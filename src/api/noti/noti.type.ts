@@ -3,6 +3,7 @@ import { APIResponseType } from "../axios.type";
 export type FallDownType = {
   device_id: string;
   alert_type: string;
+  image?: string;
   hanled: boolean;
   _id: string;
   createdAt: string;
